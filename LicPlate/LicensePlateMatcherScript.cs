@@ -25,7 +25,7 @@ namespace LicPlate
                     cmdInt = VisionLab.VisLibCmdIntCreate(100000, EchoMode.EchoOff, false);
                 String exePath = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
                 String result;
-                result = cmdInt.ExecRequest("PM_ReadFromFile PatternMatcher " + exePath + "\\scripts\\lic_fonts.pm");
+                result = cmdInt.ExecRequest("PM_ReadFromFile PatternMatcher " + exePath + "\\lic_fonts.pm");
                 result = cmdInt.ExecRequest("AddScript FindPlate " + exePath + "\\scripts\\find_plate.jls");
                 result = cmdInt.ExecRequest("AddScript FindCharacters " + exePath + "\\scripts\\find_characters.jls");
                 result = cmdInt.ExecRequest("AddScript MatchPlate " + exePath + "\\scripts\\match_plate.jls");

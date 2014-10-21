@@ -130,7 +130,7 @@
     <None Include="scripts\find_plate.jls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="scripts\lic_fonts.pm">
+    <None Include="lic_fonts.pm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Properties\app.manifest" />
