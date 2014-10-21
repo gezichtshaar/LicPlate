@@ -4,6 +4,30 @@ namespace LicPlate
 {
     public class LicensePlateMatcher
     {
+        private class TresHolds
+        {
+            public static readonly TresHolds H_NORM = new TresHolds(11, 80);
+            public static readonly TresHolds S_NORM = new TresHolds(100, 255);
+            public static readonly TresHolds V_NORM = new TresHolds(100, 255);
+
+            public static readonly TresHolds H_ONDER = new TresHolds(11, 85);
+            public static readonly TresHolds S_ONDER = new TresHolds(20, 160);
+            public static readonly TresHolds V_ONDER = new TresHolds(30, 175);
+
+            public static readonly TresHolds H_OVER = new TresHolds(20, 240);
+            public static readonly TresHolds S_OVER = new TresHolds(30, 150);
+            public static readonly TresHolds V_OVER = new TresHolds(250, 255);
+
+            public static readonly TresHolds BLOBS = new TresHolds(1, 1000);
+
+            public int min { get; set;}
+            public int max { get; set; }
+            private TresHolds(int min, int max) {
+                this.min = min;
+                this.max = max;
+            }
+        }
+        
         /*
          *  Description:
          *      Find the largest license plate in the image
@@ -19,35 +43,8 @@ namespace LicPlate
          *      //License plate found?
          *      bool 
          */
-        public static bool FindPlate(RGB888Image plateImage, ref Int32Image binaryPlateImage)
-        {
-            try
-            {
-                //Constants
-                const int c_threshold_h_min = 11;
-                const int c_threshold_h_max = 80;
-                const int c_threshold_s_min = 100;
-                const int c_threshold_s_max = 255;
-                const int c_threshold_v_min = 100;
-                const int c_threshold_v_max = 255;
-                const int c_remove_blobs_min = 1;
-                const int c_remove_blobs_max = 1000;
-
-                const int c_threshold_h_mino = 11;
-                const int c_threshold_h_maxo = 85;
-                const int c_threshold_s_mino = 20;
-                const int c_threshold_s_maxo = 160;
-                const int c_threshold_v_mino = 30;
-                const int c_threshold_v_maxo= 175;
-
-                const int c_threshold_h_minov = 20;
-                const int c_threshold_h_maxov = 240;
-                const int c_threshold_s_minov = 30;
-                const int c_threshold_s_maxov = 150;
-                const int c_threshold_v_minov = 250;
-                const int c_threshold_v_maxov = 255;
-
-
+        public static bool FindPlate(RGB888Image plateImage, ref Int32Image binaryPlateImage) {
+            try {
                 //*******************************//
                 //** Exercise:                 **//
                 //**   adjust licenseplate     **//
@@ -55,85 +52,64 @@ namespace LicPlate
                 //*******************************//            
 
                 //Find licenseplate
-                HSV888Image plateImageHSV = new HSV888Image();
-                Int32Image h = new Int32Image();
-                Int32Image s = new Int32Image();
-                Int32Image v = new Int32Image();
-                //Convert to RGB to HSV
-                VisionLab.FastRGBToHSV(plateImage, plateImageHSV);
-                Int32Image binaryPlateImageCopy = new Int32Image(binaryPlateImage);
-                Int32Image binaryPlateImageCopy2 = new Int32Image(binaryPlateImage);
-                Int32Image binaryPlateImageCopy3 = new Int32Image(binaryPlateImage);
-                
 
-                //Threshold HSV image
-                VisionLab.Threshold3Channels(plateImageHSV, binaryPlateImage, c_threshold_h_min, c_threshold_h_max, c_threshold_s_min, c_threshold_s_max, c_threshold_v_min, c_threshold_v_max);
-                //Return true, if pixels found
-                //Remove blobs with small areas
-                VisionLab.RemoveBlobs(binaryPlateImage, Connected.EightConnected, BlobAnalyse.BA_Area, c_remove_blobs_min, c_remove_blobs_max);
+                Func<RGB888Image, TresHolds, Int32Image>[] methods = new Func<RGB888Image, TresHolds, Int32Image>[] {
+                    new Func<RGB888Image, TresHolds, Int32Image>((a, b) => FindPlateOnTres(a, b, TresHolds.H_NORM, TresHolds.S_NORM, TresHolds.V_NORM)),
+                    new Func<RGB888Image, TresHolds, Int32Image>((a, b) => FindPlateOnTres(a, b, TresHolds.H_ONDER, TresHolds.S_ONDER, TresHolds.V_ONDER)), 
+                    new Func<RGB888Image, TresHolds, Int32Image>((a, b) => FindPlateOnTres(a, b, TresHolds.H_OVER, TresHolds.S_OVER, TresHolds.V_OVER)), 
+                    FindPlateOnHSV};
 
-                VisionLab.RemoveBorderBlobs(binaryPlateImage, Connected.EightConnected, Border.AllBorders);
+                Int32Image binaryImage;
 
-                VisionLab.RemoveBlobs(binaryPlateImage, Connected.EightConnected, BlobAnalyse.BA_LengthBreadthRatio, 0, 2.5);
-                
-
-                //VisionLab.RemoveBlobs(binaryPlateImage, Connected.EightConnected, BlobAnalyse.BA_NrOfHoles, 0, 5);
-                //Fill up characters
-                VisionLab.FillHoles(binaryPlateImage, Connected.FourConnected);
-
-                plateImageHSV.Dispose();
-                return (VisionLab.SumIntPixels(binaryPlateImage) > 0);
-
-                //if (VisionLab.SumIntPixels(binaryPlateImage) == 0)
-                //{
-                //    VisionLab.Threshold3Channels(plateImageHSV, binaryPlateImageCopy, c_threshold_h_mino, c_threshold_h_maxo, c_threshold_s_mino, c_threshold_s_maxo, c_threshold_v_mino, c_threshold_v_maxo);
-                //    return(removeBlobs(binaryPlateImageCopy, plateImageHSV, c_remove_blobs_min, c_remove_blobs_max));
-
-                //}
-                //if (VisionLab.SumIntPixels(binaryPlateImageCopy) == 0)
-                //{
-                //    VisionLab.Threshold3Channels(plateImageHSV, binaryPlateImageCopy2, c_threshold_h_minov, c_threshold_h_maxov, c_threshold_s_minov, c_threshold_s_maxov, c_threshold_v_minov, c_threshold_v_maxov);
-                //    return (removeBlobs(binaryPlateImageCopy2, plateImageHSV, c_remove_blobs_min, c_remove_blobs_max));
-
-                //}
-
-                //if (VisionLab.SumIntPixels(binaryPlateImageCopy2) == 0)
-                //{
-                //    VisionLab.Extract1Channel(plateImageHSV, HSVColor.Hue, h);
-                //    VisionLab.Extract1Channel(plateImageHSV, HSVColor.Saturation, s);
-                //    VisionLab.Threshold(h, 18, 55);
-                //    VisionLab.Threshold(s, 140, 230);
-                //    VisionLab.Add(h, s);
-                //    binaryPlateImage = h;
-                //    removeBlobs(binaryPlateImageCopy3, plateImageHSV, c_remove_blobs_min, c_remove_blobs_max);
-
-                //}
-                
-                
-            }
-            catch (System.Exception ex)
-            {
+                foreach(var method in methods) {
+                    if ((VisionLab.SumIntPixels(binaryImage = method(plateImage, TresHolds.BLOBS)) > 0)) {
+                        binaryPlateImage = binaryImage;
+                        return true;
+                    }
+                }
+                return false;
+            } catch (System.Exception ex) {
                 throw new Exception("FindPlate: " + ex.Message);
             }
         }
 
+        private static Int32Image FindPlateOnTres(RGB888Image plateImage, TresHolds blob, TresHolds h, TresHolds s, TresHolds v) {
+            Int32Image binaryPlateImage = new Int32Image(plateImage.GetWidth(), plateImage.GetHeight());
 
-        public static bool removeBlobs( Int32Image binaryPlateImage,  HSV888Image plateImageHSV,int c_remove_blobs_min, int c_remove_blobs_max) 
-        {
+            HSV888Image plateImageHSV = new HSV888Image();
+            VisionLab.FastRGBToHSV(plateImage, plateImageHSV);
+            VisionLab.Threshold3Channels(plateImageHSV, binaryPlateImage, h.min, h.max, s.min, s.max, v.min, v.max);
+            removeBlobs(binaryPlateImage, plateImageHSV, blob.min, blob.max);
+            return binaryPlateImage;
+        }
+
+        private static Int32Image FindPlateOnHSV(RGB888Image plateImage, TresHolds blob) {
+            HSV888Image plateImageHSV = new HSV888Image();
+            VisionLab.FastRGBToHSV(plateImage, plateImageHSV);
+
+            Int32Image h = new Int32Image();
+            Int32Image s = new Int32Image();
+            Int32Image v = new Int32Image();
+
+            VisionLab.Extract1Channel(plateImageHSV, HSVColor.Hue, h);
+            VisionLab.Extract1Channel(plateImageHSV, HSVColor.Saturation, s);
+            VisionLab.Threshold(h, 18, 55);
+            VisionLab.Threshold(s, 140, 230);
+            VisionLab.Add(h, s);
+            removeBlobs(h, plateImageHSV, blob.min, blob.max);
+            plateImageHSV.Dispose();
+            return h;
+        }
+
+        private static void removeBlobs(Int32Image binaryPlateImage, HSV888Image plateImageHSV, int c_remove_blobs_min, int c_remove_blobs_max) {
             //Remove blobs with small areas
             VisionLab.RemoveBlobs(binaryPlateImage, Connected.EightConnected, BlobAnalyse.BA_Area, c_remove_blobs_min, c_remove_blobs_max);
-
             VisionLab.RemoveBorderBlobs(binaryPlateImage, Connected.EightConnected, Border.AllBorders);
-
             VisionLab.RemoveBlobs(binaryPlateImage, Connected.EightConnected, BlobAnalyse.BA_LengthBreadthRatio, 0, 2.5);
-            
 
             //VisionLab.RemoveBlobs(binaryPlateImage, Connected.EightConnected, BlobAnalyse.BA_NrOfHoles, 0, 5);
             //Fill up characters
             VisionLab.FillHoles(binaryPlateImage, Connected.FourConnected);
-
-            //plateImageHSV.Dispose();
-            return (VisionLab.SumIntPixels(binaryPlateImage) > 0);
         }
 
         /* 
@@ -154,10 +130,8 @@ namespace LicPlate
          *      //Function executed successfully
          *      bool
          */
-        public static bool FindCharacters(RGB888Image plateImage, Int32Image binaryPlateImage, ref Int32Image binaryCharacterImage)
-        {
-            try
-            {
+        public static bool FindCharacters(RGB888Image plateImage, Int32Image binaryPlateImage, ref Int32Image binaryCharacterImage) {
+            try {
                 //Constants
                 const int c_height = 100;
                 const int c_width = 470;
@@ -177,32 +151,20 @@ namespace LicPlate
 
                 //Find licenseplate
                 VisionLab.FindCornersRectangle(binaryPlateImage, Connected.EightConnected, 0.5, Orientation.Landscape, leftTop, rightTop, leftBottom, rightBottom);
-                VisionLab.FindCornersRectangleSq(binaryPlateImage,Connected.EightConnected,leftTopr,rightTopr,leftBottomr, rightBottomr);
+                VisionLab.FindCornersRectangleSq(binaryPlateImage, Connected.EightConnected, leftTopr, rightTopr, leftBottomr, rightBottomr);
 
                 Int32Image plateImageGray = new Int32Image();
                 VisionLab.Convert(plateImage, plateImageGray);
 
 
-                try
-                {
+                try {
                     //Rectify plate
                     VisionLab.Warp(plateImageGray, binaryCharacterImage, TransformDirection.ForwardT, new Coord2D(leftTop), new Coord2D(rightTop), new Coord2D(leftBottom), new Coord2D(rightBottom), c_height, c_width, 0);
-                }
-                catch (Exception)
-                {
+                } catch (Exception) {
                     //Warp, 3 coords on one line
                     return false;
                 }
-                //try
-                //{
-                //        //Rectify plate
-                //    VisionLab.Warp(plateImageGray, binaryCharacterImage, TransformDirection.ForwardT, new Coord2D(leftTopr), new Coord2D(rightTopr), new Coord2D(leftBottomr), new Coord2D(rightBottomr), c_height, c_width, 0);
-                //}
-                //catch (Exception)
-                //{ 
-                //    return false; 
-                //}
-                 
+
                 plateImageGray.Dispose();
 
                 //*******************************//
@@ -223,8 +185,8 @@ namespace LicPlate
                 //Remove small blobs
                 VisionLab.RemoveBlobs(binaryCharacterImage, Connected.EightConnected, BlobAnalyse.BA_Area, c_remove_blobs_min, c_remove_blobs_max);
 
-                
-               // binaryCharacterImage.WriteToFile("c:/temp/plate.jl");
+
+                // binaryCharacterImage.WriteToFile("c:/temp/plate.jl");
 
                 //if (VisionLab.LabelBlobs(binaryCharacterImage, Connected.EightConnected) != 6)
                 //{
@@ -290,7 +252,7 @@ namespace LicPlate
                 //    //leftBottom.Dispose();
                 //    //rightBottom.Dispose();
                 //    // binaryCharacterImage.WriteToFile("c:/temp/plate.jl");
-               // }
+                // }
                 leftTop.Dispose();
                 rightTop.Dispose();
                 leftBottom.Dispose();
@@ -301,9 +263,7 @@ namespace LicPlate
                 rightBottomr.Dispose();
 
                 return true;
-            }
-            catch (System.Exception ex)
-            {
+            } catch (System.Exception ex) {
                 throw new Exception("FindCharacters: " + ex.Message);
             }
         }
@@ -321,10 +281,8 @@ namespace LicPlate
          *      //six characters found
          *      bool 
         */
-        public static bool MatchPlate(Int32Image binaryCharacterImage, BlobMatcher_Int32 matcher, ClassLexicon lexicon, ref LicensePlate result, ref LicensePlate lexiconResult)        
-        {            
-            try
-            {
+        public static bool MatchPlate(Int32Image binaryCharacterImage, BlobMatcher_Int32 matcher, ClassLexicon lexicon, ref LicensePlate result, ref LicensePlate lexiconResult) {
+            try {
                 //Check if 6 characters/blobs have been found and label image.
                 if (VisionLab.LabelBlobs(binaryCharacterImage, Connected.EightConnected) != 6)
                     return false;
@@ -343,13 +301,12 @@ namespace LicPlate
                 vector_vector_LetterMatch match = new vector_vector_LetterMatch();
 
                 //Process each character/blob.
-                foreach (Blob b in returnBlobs)
-                {
+                foreach (Blob b in returnBlobs) {
                     //Cut out character
                     VisionLab.ROI(binaryCharacterImage, binaryCharacter, b.TopLeft(), new HeightWidth(b.Height(), b.Width()));
                     //Convert ROI result to binary
                     VisionLab.ClipPixelValue(binaryCharacter, 0, 1);
-                    
+
                     //Calculate character's classification for all classes.
                     vector_PatternMatchResult returnMatches = new vector_PatternMatchResult();
                     float conf = matcher.AllMatches(binaryCharacter, (float)-0.5, (float)0.5, returnMatches);
@@ -367,8 +324,7 @@ namespace LicPlate
                 //Validate match with lexicon.
                 vector_int bestWord = new vector_int();
                 lexiconResult.confidence = lexicon.FindBestWord(match, bestWord, Optimize.OptimizeForMinimum);
-                for (int i = 0; i < bestWord.Count; i++)
-                {
+                for (int i = 0; i < bestWord.Count; i++) {
                     string character = matcher.PatternName(bestWord[i]);
                     //Store lexicon result
                     lexiconResult.characters.Add(new LicenseCharacter(character));
@@ -379,9 +335,7 @@ namespace LicPlate
                 match.Dispose();
                 bestWord.Dispose();
                 return true;
-            }
-            catch (System.Exception ex)
-            {
+            } catch (System.Exception ex) {
                 throw new Exception("MatchPlate: " + ex.Message);
             }
         }
