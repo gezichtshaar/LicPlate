@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 namespace LicPlate
 {
@@ -27,6 +29,21 @@ namespace LicPlate
                 this.max = max;
             }
         }
+
+        private static readonly Regex[] regexes = new Regex[] { new Regex(@"^[a-zA-Z]{2}[\d]{2}[\d]{2}$"),
+                                                                new Regex(@"^[\d]{2}[\d]{2}[a-zA-Z]{2}$"),
+                                                                new Regex(@"^[\d]{2}[a-zA-Z]{2}[\d]{2}$"),
+                                                                new Regex(@"^[a-zA-Z]{2}[\d]{2}[a-zA-Z]{2}$"),
+                                                                new Regex(@"^[a-zA-Z]{2}[a-zA-Z]{2}[\d]{2}$"),
+                                                                new Regex(@"^[\d]{2}[a-zA-Z]{2}[a-zA-Z]{2}$"),
+                                                                new Regex(@"^[\d]{2}[a-zA-Z]{3}[\d]{1}$"),
+                                                                new Regex(@"^[\d]{1}[a-zA-Z]{3}[\d]{2}$"),
+                                                                new Regex(@"^[a-zA-Z]{2}[\d]{3}[a-zA-Z]{1}$"),
+                                                                new Regex(@"^[a-zA-Z]{1}[\d]{3}[a-zA-Z]{2}$"),
+                                                                new Regex(@"^[a-zA-Z]{3}[\d]{2}[a-zA-Z]{1}$"),
+                                                                new Regex(@"^[a-zA-Z]{1}[\d]{2}[a-zA-Z]{3}$"),
+                                                                new Regex(@"^[\d]{1}[a-zA-Z]{2}[\d]{3}$"),
+                                                                new Regex(@"^[\d]{3}[a-zA-Z]{2}[\d]{1}$")};
         
         /*
          *  Description:
@@ -151,7 +168,7 @@ namespace LicPlate
 
                 //Find licenseplate
                 VisionLab.FindCornersRectangle(binaryPlateImage, Connected.EightConnected, 0.5, Orientation.Landscape, leftTop, rightTop, leftBottom, rightBottom);
-                VisionLab.FindCornersRectangleSq(binaryPlateImage, Connected.EightConnected, leftTopr, rightTopr, leftBottomr, rightBottomr);
+                //VisionLab.FindCornersRectangleSq(binaryPlateImage, Connected.EightConnected, leftTopr, rightTopr, leftBottomr, rightBottomr);
 
                 Int32Image plateImageGray = new Int32Image();
                 VisionLab.Convert(plateImage, plateImageGray);
@@ -300,26 +317,44 @@ namespace LicPlate
                 //Create data structure for lexicon.
                 vector_vector_LetterMatch match = new vector_vector_LetterMatch();
 
-                //Process each character/blob.
-                foreach (Blob b in returnBlobs) {
-                    //Cut out character
-                    VisionLab.ROI(binaryCharacterImage, binaryCharacter, b.TopLeft(), new HeightWidth(b.Height(), b.Width()));
-                    //Convert ROI result to binary
-                    VisionLab.ClipPixelValue(binaryCharacter, 0, 1);
+                int n = 0;
+                LicensePlate licenzPlate;
+                List<Tuple<float, int>> bestErr = new List<Tuple<float,int>>();
+                do {
+                    licenzPlate = new LicensePlate();
+                    bestErr.Add(new Tuple<float, int>(10f, 0));
+                    //Process each character/blob.
+                    for (int y = 0; y < returnBlobs.Count; y++) {
+                        Blob b = returnBlobs[y];
+                        //Cut out character
+                        VisionLab.ROI(binaryCharacterImage, binaryCharacter, b.TopLeft(), new HeightWidth(b.Height(), b.Width()));
+                        //Convert ROI result to binary
+                        VisionLab.ClipPixelValue(binaryCharacter, 0, 1);
 
-                    //Calculate character's classification for all classes.
-                    vector_PatternMatchResult returnMatches = new vector_PatternMatchResult();
-                    float conf = matcher.AllMatches(binaryCharacter, (float)-0.5, (float)0.5, returnMatches);
-                    float err = returnMatches[0].error;
-                    int id = returnMatches[0].id;
-                    string chr = matcher.PatternName(id);
+                        int z = bestErr.Count > 1 && bestErr[bestErr.Count - 2].Item2 == y ? 1 : 0;
+                        Console.WriteLine("{0} {1} {2}", n, y, z);
+                        //Calculate character's classification for all classes.
+                        vector_PatternMatchResult returnMatches = new vector_PatternMatchResult();
+                        float conf = matcher.AllMatches(binaryCharacter, (float)-0.5, (float)0.5, returnMatches);
+                        float err = returnMatches[z].error;
+                        int id = returnMatches[z].id;
+                        string chr = matcher.PatternName(id);
 
-                    //Fill datastructure for lexicon.
-                    match.Add(VisionLabEx.PatternMatchResultToLetterMatch(returnMatches));
+                        if (err - returnMatches[1].error < bestErr[bestErr.Count - 1].Item1) {
+                            bestErr[bestErr.Count - 1] = new Tuple<float, int>(err, y);
+                            Console.WriteLine(bestErr[bestErr.Count - 1]);
+                        }
 
-                    //Store best match in result
-                    result.characters.Add(new LicenseCharacter(chr, err, conf));
-                }
+                        //Fill datastructure for lexicon.
+                        match.Add(VisionLabEx.PatternMatchResultToLetterMatch(returnMatches));
+
+                        //Store best match in result
+                        licenzPlate.characters.Add(new LicenseCharacter(chr, err, conf));
+                    }
+                    Console.WriteLine("{0} {1}", licenzPlate.getLicensePlateString(), testNummerbord(licenzPlate.getLicensePlateString()));
+                } while(n++ < 3 && !testNummerbord(licenzPlate.getLicensePlateString())); //regex match
+
+                result = licenzPlate;
 
                 //Validate match with lexicon.
                 vector_int bestWord = new vector_int();
@@ -334,10 +369,19 @@ namespace LicPlate
                 returnBlobs.Dispose();
                 match.Dispose();
                 bestWord.Dispose();
-                return true;
+                return testNummerbord(result.getLicensePlateString()); // return regex match
             } catch (System.Exception ex) {
                 throw new Exception("MatchPlate: " + ex.Message);
             }
+        }
+
+        private static bool testNummerbord(String nummerbord) {
+            foreach (Regex regex in regexes) {
+                if (regex.IsMatch(nummerbord)) {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
