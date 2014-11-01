@@ -20,6 +20,9 @@ namespace LicPlate
             public static readonly TresHolds S_OVER = new TresHolds(30, 150);
             public static readonly TresHolds V_OVER = new TresHolds(250, 255);
 
+            public static readonly TresHolds REMOVE_BLOB = new TresHolds(1, 400);
+            public static readonly TresHolds MATCH_PLATE_COORD = new TresHolds(100, 470);
+
             public static readonly TresHolds BLOBS = new TresHolds(1, 1000);
 
             public int min { get; set;}
@@ -150,139 +153,118 @@ namespace LicPlate
         public static bool FindCharacters(RGB888Image plateImage, Int32Image binaryPlateImage, ref Int32Image binaryCharacterImage) {
             try {
                 //Constants
-                const int c_height = 100;
-                const int c_width = 470;
-                const int c_remove_blobs_min = 1;
-                const int c_remove_blobs_max = 400;
-
-                XYCoord leftTop = new XYCoord();
-                XYCoord rightTop = new XYCoord();
-                XYCoord leftBottom = new XYCoord();
-                XYCoord rightBottom = new XYCoord();
-
-                XYCoord leftTopr = new XYCoord();
-                XYCoord rightTopr = new XYCoord();
-                XYCoord leftBottomr = new XYCoord();
-                XYCoord rightBottomr = new XYCoord();
-
-
-                //Find licenseplate
-                VisionLab.FindCornersRectangle(binaryPlateImage, Connected.EightConnected, 0.5, Orientation.Landscape, leftTop, rightTop, leftBottom, rightBottom);
-                //VisionLab.FindCornersRectangleSq(binaryPlateImage, Connected.EightConnected, leftTopr, rightTopr, leftBottomr, rightBottomr);
-
-                Int32Image plateImageGray = new Int32Image();
-                VisionLab.Convert(plateImage, plateImageGray);
-
-
-                try {
-                    //Rectify plate
-                    VisionLab.Warp(plateImageGray, binaryCharacterImage, TransformDirection.ForwardT, new Coord2D(leftTop), new Coord2D(rightTop), new Coord2D(leftBottom), new Coord2D(rightBottom), c_height, c_width, 0);
-                } catch (Exception) {
-                    //Warp, 3 coords on one line
-                    return false;
-                }
-
-                plateImageGray.Dispose();
-
                 //*******************************//
                 //** Exercise:                 **//
                 //**   adjust licenseplate     **//
                 //**   segmentation            **//
                 //*******************************//
 
-                //Find dark text on bright licenseplate using ThresholdISOData
-                VisionLab.ThresholdIsoData(binaryCharacterImage, ObjectBrightness.DarkObject);
+                Int32Image treshold = MatchPlateIsodata(plateImage, binaryPlateImage);
+                if (treshold.GetImageSize() > 0 && VisionLab.LabelBlobs(new Int32Image(treshold), Connected.EightConnected) == 6) {
+                    binaryCharacterImage = treshold;
+                    return true;
+                }
 
-                //Remove small blobs and noise
-                Int32Image binaryCharacterImageCopy = new Int32Image(binaryCharacterImage);
-                VisionLab.Opening(binaryCharacterImageCopy, binaryCharacterImage, new Mask_Int32(5, 1, 1));
-
-                //Remove blobs connected to the border
-                VisionLab.RemoveBorderBlobs(binaryCharacterImage, Connected.EightConnected, Border.AllBorders);
-                //Remove small blobs
-                VisionLab.RemoveBlobs(binaryCharacterImage, Connected.EightConnected, BlobAnalyse.BA_Area, c_remove_blobs_min, c_remove_blobs_max);
-
-
-                // binaryCharacterImage.WriteToFile("c:/temp/plate.jl");
-
-                //if (VisionLab.LabelBlobs(binaryCharacterImage, Connected.EightConnected) != 6)
-                //{
-
-                //    // Find licenseplate
-                //    VisionLab.FindCornersRectangle(binaryPlateImage, Connected.EightConnected, 0.5, Orientation.Landscape, leftTop, rightTop, leftBottom, rightBottom);
-
-                //    HSV888Image plateImageHSV = new HSV888Image();
-                //    HSV888Image warpplateImageHSV = new HSV888Image();
-                //    VisionLab.Convert(plateImage, plateImageHSV);
-                //    Int32Image h = new Int32Image();
-                //    Int32Image s = new Int32Image();
-                //    Int32Image v = new Int32Image();
-
-
-                //    try
-                //    {
-                //        //Rectify plate
-                //        VisionLab.Warp(plateImageHSV, warpplateImageHSV, TransformDirection.ForwardT, new Coord2D(leftTop), new Coord2D(rightTop), new Coord2D(leftBottom), new Coord2D(rightBottom), c_height, c_width, new HSV888Pixel());
-                //    }
-                //    catch (Exception)
-                //    {
-                //        //Warp, 3 coords on one line
-                //        return false;
-                //    }
-                //    try
-                //    {
-                //        //Rectify plate
-                //        VisionLab.Warp(plateImageHSV, warpplateImageHSV, TransformDirection.ForwardT, new Coord2D(leftTopr), new Coord2D(rightTopr), new Coord2D(leftBottomr), new Coord2D(rightBottomr), c_height, c_width, new HSV888Pixel());
-                //    }
-                //    catch (Exception)
-                //    {
-                //        //Warp, 3 coords on one line
-                //        return false;
-                //    }
-                //    plateImageGray.Dispose();
-
-                //    //*******************************//
-                //    //** Exercise:                 **//
-                //    //**   adjust licenseplate     **//
-                //    //**   segmentation            **//
-                //    //*******************************//
-
-                //    //Find dark text on bright licenseplate using ThresholdISOData
-                //    VisionLab.Extract1Channel(plateImageHSV, HSVColor.Hue, h);
-                //    VisionLab.Extract1Channel(plateImageHSV, HSVColor.Saturation, s);
-                //    VisionLab.Threshold(h, 15, 55);
-                //    VisionLab.Threshold(s, 15, 230);
-                //    VisionLab.Add(h, s);
-                //    binaryCharacterImage = h;
-                //    Console.WriteLine("testiez");
-                //    //Remove small blobs and noise
-                //    Int32Image bbinaryCharacterImageCopy = new Int32Image(binaryCharacterImage);
-                //    VisionLab.Opening(bbinaryCharacterImageCopy, binaryCharacterImage, new Mask_Int32(5, 1, 1));
-
-                //    //Remove blobs connected to the border
-                //    VisionLab.RemoveBorderBlobs(binaryCharacterImage, Connected.EightConnected, Border.AllBorders);
-                //    //Remove small blobs
-                //    VisionLab.RemoveBlobs(binaryCharacterImage, Connected.EightConnected, BlobAnalyse.BA_Area, c_remove_blobs_min, c_remove_blobs_max);
-
-                //    //leftTop.Dispose();
-                //    //rightTop.Dispose();
-                //    //leftBottom.Dispose();
-                //    //rightBottom.Dispose();
-                //    // binaryCharacterImage.WriteToFile("c:/temp/plate.jl");
-                // }
-                leftTop.Dispose();
-                rightTop.Dispose();
-                leftBottom.Dispose();
-                rightBottom.Dispose();
-                leftTopr.Dispose();
-                rightTopr.Dispose();
-                leftBottomr.Dispose();
-                rightBottomr.Dispose();
-
-                return true;
+                treshold = MatchPlateHSVTreshold(plateImage, binaryPlateImage);
+                if (treshold.GetImageSize() > 0 && VisionLab.LabelBlobs(new Int32Image(treshold), Connected.EightConnected) == 6) {
+                    binaryCharacterImage = treshold;
+                    return true;
+                }
+                return false;
             } catch (System.Exception ex) {
                 throw new Exception("FindCharacters: " + ex.Message);
             }
+        }
+
+        private static Int32Image MatchPlateIsodata(RGB888Image plateImage, Int32Image binaryPlateImage) {
+            Int32Image binaryCharacterImage = new Int32Image();
+
+            XYCoord leftTop = new XYCoord();
+            XYCoord rightTop = new XYCoord();
+            XYCoord leftBottom = new XYCoord();
+            XYCoord rightBottom = new XYCoord();
+
+            if (!VisionLab.FindCornersRectangle(binaryPlateImage, Connected.EightConnected, 0.5, Orientation.Landscape, leftTop, rightTop, leftBottom, rightBottom)) {
+                VisionLab.FindCornersRectangleSq(binaryPlateImage, Connected.EightConnected, leftTop, rightTop, leftBottom, rightBottom);
+            }
+
+            Int32Image plateImageGray = new Int32Image();
+            VisionLab.Convert(plateImage, plateImageGray);
+
+            try {
+                //Rectify plate
+                VisionLab.Warp(plateImageGray, binaryCharacterImage, TransformDirection.ForwardT, new Coord2D(leftTop), new Coord2D(rightTop), new Coord2D(leftBottom), new Coord2D(rightBottom), TresHolds.MATCH_PLATE_COORD.min, TresHolds.MATCH_PLATE_COORD.max, 0);
+            } catch (Exception) {
+                //Warp, 3 coords on one line
+                return new Int32Image();
+            }
+
+            plateImageGray.Dispose();
+            VisionLab.ThresholdIsoData(binaryCharacterImage, ObjectBrightness.DarkObject);
+
+            //Remove small blobs and noise
+            Int32Image binaryCharacterImageCopy = new Int32Image(binaryCharacterImage);
+            VisionLab.Opening(binaryCharacterImageCopy, binaryCharacterImage, new Mask_Int32(5, 1, 1));
+
+            //Remove blobs connected to the border
+            VisionLab.RemoveBorderBlobs(binaryCharacterImage, Connected.EightConnected, Border.AllBorders);
+            //Remove small blobs
+            VisionLab.RemoveBlobs(binaryCharacterImage, Connected.EightConnected, BlobAnalyse.BA_Area, TresHolds.REMOVE_BLOB.min, TresHolds.REMOVE_BLOB.max);
+            return binaryCharacterImage;
+        }
+
+        private static Int32Image MatchPlateHSVTreshold(RGB888Image plateImage, Int32Image binaryPlateImage) {
+            Int32Image binaryCharacterImage = new Int32Image();
+            XYCoord leftTop = new XYCoord();
+            XYCoord rightTop = new XYCoord();
+            XYCoord leftBottom = new XYCoord();
+            XYCoord rightBottom = new XYCoord();
+
+            if (!VisionLab.FindCornersRectangle(binaryPlateImage, Connected.EightConnected, 0.5, Orientation.Landscape, leftTop, rightTop, leftBottom, rightBottom)) {
+                VisionLab.FindCornersRectangleSq(binaryPlateImage, Connected.EightConnected, leftTop, rightTop, leftBottom, rightBottom);
+            }
+
+            RGB888Image plateImageGray = new RGB888Image();
+            VisionLab.Convert(binaryPlateImage, plateImageGray);
+
+            try {
+                //Rectify plate
+                VisionLab.Warp(plateImage, plateImageGray, TransformDirection.ForwardT, new Coord2D(leftTop), new Coord2D(rightTop), new Coord2D(leftBottom), new Coord2D(rightBottom), TresHolds.MATCH_PLATE_COORD.min, TresHolds.MATCH_PLATE_COORD.max, new RGB888Pixel(0));
+            } catch (Exception) {
+                //Warp, 3 coords on one line
+                return new Int32Image();
+            }
+
+            HSV888Image plateImageHSV = new HSV888Image();
+            VisionLab.FastRGBToHSV(plateImageGray, plateImageHSV);
+
+            plateImageGray.Dispose();
+
+            Int32Image h = new Int32Image();
+            Int32Image s = new Int32Image();
+
+            //*******************************//
+            //** Exercise:                 **//
+            //**   adjust licenseplate     **//
+            //**   segmentation            **//
+            //*******************************//
+
+            //Find dark text on bright licenseplate using ThresholdISOData
+            VisionLab.Extract1Channel(plateImageHSV, HSVColor.Hue, h);
+            VisionLab.Extract1Channel(plateImageHSV, HSVColor.Saturation, s);
+            VisionLab.Threshold(h, 15, 55);
+            VisionLab.Threshold(s, 15, 230);
+            VisionLab.Add(h, s);
+
+            Int32Image binaryCharacterImageCopy = new Int32Image(h);
+            VisionLab.Opening(binaryCharacterImageCopy, h, new Mask_Int32(5, 1, 1));
+
+            //Remove blobs connected to the border
+            VisionLab.RemoveBorderBlobs(h, Connected.EightConnected, Border.AllBorders);
+            //Remove small blobs
+            VisionLab.RemoveBlobs(h, Connected.EightConnected, BlobAnalyse.BA_Area, TresHolds.REMOVE_BLOB.min, TresHolds.REMOVE_BLOB.max);
+
+            return h;
         }
 
         /*
@@ -319,10 +301,11 @@ namespace LicPlate
 
                 int n = 0;
                 LicensePlate licenzPlate;
-                List<Tuple<float, int>> bestErr = new List<Tuple<float,int>>();
+                int[] plate = new int[6];
+                float currentErr = 100;
                 do {
                     licenzPlate = new LicensePlate();
-                    bestErr.Add(new Tuple<float, int>(10f, 0));
+                    int z = 0;
                     //Process each character/blob.
                     for (int y = 0; y < returnBlobs.Count; y++) {
                         Blob b = returnBlobs[y];
@@ -331,19 +314,27 @@ namespace LicPlate
                         //Convert ROI result to binary
                         VisionLab.ClipPixelValue(binaryCharacter, 0, 1);
 
-                        int z = bestErr.Count > 1 && bestErr[bestErr.Count - 2].Item2 == y ? 1 : 0;
-                        Console.WriteLine("{0} {1} {2}", n, y, z);
+                        //Console.WriteLine("{0} {1} {2}", n, y, z);
                         //Calculate character's classification for all classes.
                         vector_PatternMatchResult returnMatches = new vector_PatternMatchResult();
                         float conf = matcher.AllMatches(binaryCharacter, (float)-0.5, (float)0.5, returnMatches);
-                        float err = returnMatches[z].error;
-                        int id = returnMatches[z].id;
+                        float err = returnMatches[plate[y]].error;
+                        int id = returnMatches[plate[y]].id;
                         string chr = matcher.PatternName(id);
 
-                        if (err - returnMatches[1].error < bestErr[bestErr.Count - 1].Item1) {
-                            bestErr[bestErr.Count - 1] = new Tuple<float, int>(err, y);
-                            Console.WriteLine(bestErr[bestErr.Count - 1]);
+                        if (chr.ToLower() == "s") {
+                            conf *= 0.2f;
                         }
+
+                        if (err > 0.20f) {
+                            conf *= 0.5f;
+                        }
+
+                        if (returnMatches[plate[y] + 1].error - err < currentErr) {
+                            currentErr = returnMatches[plate[y] + 1].error - err;
+                            z = y;
+                        }
+                        Console.WriteLine(err);
 
                         //Fill datastructure for lexicon.
                         match.Add(VisionLabEx.PatternMatchResultToLetterMatch(returnMatches));
@@ -351,8 +342,9 @@ namespace LicPlate
                         //Store best match in result
                         licenzPlate.characters.Add(new LicenseCharacter(chr, err, conf));
                     }
-                    Console.WriteLine("{0} {1}", licenzPlate.getLicensePlateString(), testNummerbord(licenzPlate.getLicensePlateString()));
-                } while(n++ < 3 && !testNummerbord(licenzPlate.getLicensePlateString())); //regex match
+                    plate[z]++;
+                    Console.WriteLine("{0} {1} {2}", licenzPlate.getLicensePlateString(), testNummerbord(licenzPlate.getLicensePlateString()), currentErr);
+                } while(n++ <= 4 && !testNummerbord(licenzPlate.getLicensePlateString())); //regex match
 
                 result = licenzPlate;
 

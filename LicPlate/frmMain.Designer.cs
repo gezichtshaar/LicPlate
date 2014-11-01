@@ -112,9 +112,10 @@
             // 
             // imgOrig
             // 
-            this.imgOrig.Location = new System.Drawing.Point(12, 57);
+            this.imgOrig.Location = new System.Drawing.Point(16, 70);
+            this.imgOrig.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.imgOrig.Name = "imgOrig";
-            this.imgOrig.Size = new System.Drawing.Size(256, 243);
+            this.imgOrig.Size = new System.Drawing.Size(341, 299);
             this.imgOrig.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.imgOrig.TabIndex = 0;
             this.imgOrig.TabStop = false;
@@ -123,63 +124,70 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(7, 9);
+            this.label1.Location = new System.Drawing.Point(9, 11);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 25);
+            this.label1.Size = new System.Drawing.Size(93, 31);
             this.label1.TabIndex = 1;
             this.label1.Text = "Score:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(649, 481);
+            this.label2.Location = new System.Drawing.Point(865, 592);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(77, 13);
+            this.label2.Size = new System.Drawing.Size(102, 17);
             this.label2.TabIndex = 2;
             this.label2.Text = "False Positives";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 481);
+            this.label3.Location = new System.Drawing.Point(13, 592);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(74, 13);
+            this.label3.Size = new System.Drawing.Size(98, 17);
             this.label3.TabIndex = 3;
             this.label3.Text = "True Positives";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(549, 481);
+            this.label4.Location = new System.Drawing.Point(732, 592);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(38, 13);
+            this.label4.Size = new System.Drawing.Size(48, 17);
             this.label4.TabIndex = 4;
             this.label4.Text = "Reject";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(228, 467);
+            this.label5.Location = new System.Drawing.Point(304, 575);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(60, 13);
+            this.label5.Size = new System.Drawing.Size(81, 17);
             this.label5.TabIndex = 5;
             this.label5.Text = "FindPlate( )";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(428, 467);
+            this.label6.Location = new System.Drawing.Point(571, 575);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(70, 13);
+            this.label6.Size = new System.Drawing.Size(92, 17);
             this.label6.TabIndex = 6;
             this.label6.Text = "MatchPlate( )";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(555, 21);
+            this.label7.Location = new System.Drawing.Point(740, 26);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(41, 13);
+            this.label7.Size = new System.Drawing.Size(53, 17);
             this.label7.TabIndex = 13;
             this.label7.Text = "Images";
             // 
@@ -187,17 +195,19 @@
             // 
             this.lblScore.AutoSize = true;
             this.lblScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblScore.Location = new System.Drawing.Point(79, 9);
+            this.lblScore.Location = new System.Drawing.Point(105, 11);
+            this.lblScore.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblScore.Name = "lblScore";
-            this.lblScore.Size = new System.Drawing.Size(24, 25);
+            this.lblScore.Size = new System.Drawing.Size(29, 31);
             this.lblScore.TabIndex = 14;
             this.lblScore.Text = "0";
             // 
             // btnLoadFromFolder
             // 
-            this.btnLoadFromFolder.Location = new System.Drawing.Point(553, 244);
+            this.btnLoadFromFolder.Location = new System.Drawing.Point(737, 300);
+            this.btnLoadFromFolder.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnLoadFromFolder.Name = "btnLoadFromFolder";
-            this.btnLoadFromFolder.Size = new System.Drawing.Size(129, 23);
+            this.btnLoadFromFolder.Size = new System.Drawing.Size(172, 28);
             this.btnLoadFromFolder.TabIndex = 15;
             this.btnLoadFromFolder.Text = "Load from folder";
             this.btnLoadFromFolder.UseVisualStyleBackColor = true;
@@ -205,9 +215,10 @@
             // 
             // imgRectifiedPlate
             // 
-            this.imgRectifiedPlate.Location = new System.Drawing.Point(12, 306);
+            this.imgRectifiedPlate.Location = new System.Drawing.Point(16, 377);
+            this.imgRectifiedPlate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.imgRectifiedPlate.Name = "imgRectifiedPlate";
-            this.imgRectifiedPlate.Size = new System.Drawing.Size(288, 63);
+            this.imgRectifiedPlate.Size = new System.Drawing.Size(384, 78);
             this.imgRectifiedPlate.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.imgRectifiedPlate.TabIndex = 16;
             this.imgRectifiedPlate.TabStop = false;
@@ -218,9 +229,10 @@
             // 
             // btnProcess
             // 
-            this.btnProcess.Location = new System.Drawing.Point(553, 273);
+            this.btnProcess.Location = new System.Drawing.Point(737, 336);
+            this.btnProcess.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnProcess.Name = "btnProcess";
-            this.btnProcess.Size = new System.Drawing.Size(129, 23);
+            this.btnProcess.Size = new System.Drawing.Size(172, 28);
             this.btnProcess.TabIndex = 17;
             this.btnProcess.Tag = "stop";
             this.btnProcess.Text = "Process";
@@ -230,63 +242,70 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(9, 41);
+            this.label8.Location = new System.Drawing.Point(12, 50);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(41, 13);
+            this.label8.Size = new System.Drawing.Size(53, 17);
             this.label8.TabIndex = 18;
             this.label8.Text = "Images";
             // 
             // lblMatchedCount
             // 
             this.lblMatchedCount.AutoSize = true;
-            this.lblMatchedCount.Location = new System.Drawing.Point(12, 634);
+            this.lblMatchedCount.Location = new System.Drawing.Point(16, 780);
+            this.lblMatchedCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMatchedCount.Name = "lblMatchedCount";
-            this.lblMatchedCount.Size = new System.Drawing.Size(13, 13);
+            this.lblMatchedCount.Size = new System.Drawing.Size(16, 17);
             this.lblMatchedCount.TabIndex = 19;
             this.lblMatchedCount.Text = "0";
             // 
             // lblFindPlateErrCount
             // 
             this.lblFindPlateErrCount.AutoSize = true;
-            this.lblFindPlateErrCount.Location = new System.Drawing.Point(228, 634);
+            this.lblFindPlateErrCount.Location = new System.Drawing.Point(304, 780);
+            this.lblFindPlateErrCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFindPlateErrCount.Name = "lblFindPlateErrCount";
-            this.lblFindPlateErrCount.Size = new System.Drawing.Size(13, 13);
+            this.lblFindPlateErrCount.Size = new System.Drawing.Size(16, 17);
             this.lblFindPlateErrCount.TabIndex = 20;
             this.lblFindPlateErrCount.Text = "0";
             // 
             // lblMatchPlateErrCount
             // 
             this.lblMatchPlateErrCount.AutoSize = true;
-            this.lblMatchPlateErrCount.Location = new System.Drawing.Point(428, 634);
+            this.lblMatchPlateErrCount.Location = new System.Drawing.Point(571, 780);
+            this.lblMatchPlateErrCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMatchPlateErrCount.Name = "lblMatchPlateErrCount";
-            this.lblMatchPlateErrCount.Size = new System.Drawing.Size(13, 13);
+            this.lblMatchPlateErrCount.Size = new System.Drawing.Size(16, 17);
             this.lblMatchPlateErrCount.TabIndex = 21;
             this.lblMatchPlateErrCount.Text = "0";
             // 
             // lblLowConfidenceCount
             // 
             this.lblLowConfidenceCount.AutoSize = true;
-            this.lblLowConfidenceCount.Location = new System.Drawing.Point(549, 634);
+            this.lblLowConfidenceCount.Location = new System.Drawing.Point(732, 780);
+            this.lblLowConfidenceCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblLowConfidenceCount.Name = "lblLowConfidenceCount";
-            this.lblLowConfidenceCount.Size = new System.Drawing.Size(13, 13);
+            this.lblLowConfidenceCount.Size = new System.Drawing.Size(16, 17);
             this.lblLowConfidenceCount.TabIndex = 22;
             this.lblLowConfidenceCount.Text = "0";
             // 
             // lblErrorsCount
             // 
             this.lblErrorsCount.AutoSize = true;
-            this.lblErrorsCount.Location = new System.Drawing.Point(649, 634);
+            this.lblErrorsCount.Location = new System.Drawing.Point(865, 780);
+            this.lblErrorsCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblErrorsCount.Name = "lblErrorsCount";
-            this.lblErrorsCount.Size = new System.Drawing.Size(13, 13);
+            this.lblErrorsCount.Size = new System.Drawing.Size(16, 17);
             this.lblErrorsCount.TabIndex = 23;
             this.lblErrorsCount.Text = "0";
             // 
             // lblMatchList
             // 
             this.lblMatchList.AutoSize = true;
-            this.lblMatchList.Location = new System.Drawing.Point(671, 206);
+            this.lblMatchList.Location = new System.Drawing.Point(895, 254);
+            this.lblMatchList.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMatchList.Name = "lblMatchList";
-            this.lblMatchList.Size = new System.Drawing.Size(13, 13);
+            this.lblMatchList.Size = new System.Drawing.Size(16, 17);
             this.lblMatchList.TabIndex = 24;
             this.lblMatchList.Text = "0";
             // 
@@ -294,26 +313,29 @@
             // 
             this.lblLexiconResult.AutoSize = true;
             this.lblLexiconResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLexiconResult.Location = new System.Drawing.Point(102, 415);
+            this.lblLexiconResult.Location = new System.Drawing.Point(136, 511);
+            this.lblLexiconResult.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblLexiconResult.Name = "lblLexiconResult";
-            this.lblLexiconResult.Size = new System.Drawing.Size(96, 25);
+            this.lblLexiconResult.Size = new System.Drawing.Size(122, 31);
             this.lblLexiconResult.TabIndex = 25;
             this.lblLexiconResult.Text = "XXXXXX";
             // 
             // imgPlateBin
             // 
-            this.imgPlateBin.Location = new System.Drawing.Point(277, 57);
+            this.imgPlateBin.Location = new System.Drawing.Point(369, 70);
+            this.imgPlateBin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.imgPlateBin.Name = "imgPlateBin";
-            this.imgPlateBin.Size = new System.Drawing.Size(256, 242);
+            this.imgPlateBin.Size = new System.Drawing.Size(341, 298);
             this.imgPlateBin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.imgPlateBin.TabIndex = 26;
             this.imgPlateBin.TabStop = false;
             // 
             // btnReloadBblobMatcher
             // 
-            this.btnReloadBblobMatcher.Location = new System.Drawing.Point(553, 301);
+            this.btnReloadBblobMatcher.Location = new System.Drawing.Point(737, 370);
+            this.btnReloadBblobMatcher.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnReloadBblobMatcher.Name = "btnReloadBblobMatcher";
-            this.btnReloadBblobMatcher.Size = new System.Drawing.Size(129, 23);
+            this.btnReloadBblobMatcher.Size = new System.Drawing.Size(172, 28);
             this.btnReloadBblobMatcher.TabIndex = 27;
             this.btnReloadBblobMatcher.Text = "Reload Scripts";
             this.btnReloadBblobMatcher.UseVisualStyleBackColor = true;
@@ -321,74 +343,88 @@
             // 
             // ErrorTB
             // 
-            this.ErrorTB.Location = new System.Drawing.Point(71, 688);
+            this.ErrorTB.Location = new System.Drawing.Point(95, 847);
+            this.ErrorTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ErrorTB.Name = "ErrorTB";
             this.ErrorTB.ReadOnly = true;
-            this.ErrorTB.Size = new System.Drawing.Size(681, 20);
+            this.ErrorTB.Size = new System.Drawing.Size(907, 22);
             this.ErrorTB.TabIndex = 29;
             // 
             // lstMatched
             // 
             this.lstMatched.FormattingEnabled = true;
-            this.lstMatched.Location = new System.Drawing.Point(13, 495);
+            this.lstMatched.ItemHeight = 16;
+            this.lstMatched.Location = new System.Drawing.Point(17, 609);
+            this.lstMatched.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lstMatched.Name = "lstMatched";
-            this.lstMatched.Size = new System.Drawing.Size(100, 134);
+            this.lstMatched.Size = new System.Drawing.Size(132, 164);
             this.lstMatched.TabIndex = 30;
             this.lstMatched.DoubleClick += new System.EventHandler(this.MatchImage_DoubleClick);
             // 
             // lstFindPlateErr
             // 
             this.lstFindPlateErr.FormattingEnabled = true;
-            this.lstFindPlateErr.Location = new System.Drawing.Point(231, 495);
+            this.lstFindPlateErr.ItemHeight = 16;
+            this.lstFindPlateErr.Location = new System.Drawing.Point(308, 609);
+            this.lstFindPlateErr.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lstFindPlateErr.Name = "lstFindPlateErr";
-            this.lstFindPlateErr.Size = new System.Drawing.Size(100, 134);
+            this.lstFindPlateErr.Size = new System.Drawing.Size(132, 164);
             this.lstFindPlateErr.TabIndex = 31;
             this.lstFindPlateErr.DoubleClick += new System.EventHandler(this.MatchImage_DoubleClick);
             // 
             // lstMatchPlateErr
             // 
             this.lstMatchPlateErr.FormattingEnabled = true;
-            this.lstMatchPlateErr.Location = new System.Drawing.Point(431, 495);
+            this.lstMatchPlateErr.ItemHeight = 16;
+            this.lstMatchPlateErr.Location = new System.Drawing.Point(575, 609);
+            this.lstMatchPlateErr.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lstMatchPlateErr.Name = "lstMatchPlateErr";
-            this.lstMatchPlateErr.Size = new System.Drawing.Size(100, 134);
+            this.lstMatchPlateErr.Size = new System.Drawing.Size(132, 164);
             this.lstMatchPlateErr.TabIndex = 32;
             this.lstMatchPlateErr.DoubleClick += new System.EventHandler(this.MatchImage_DoubleClick);
             // 
             // lstLowConfidence
             // 
             this.lstLowConfidence.FormattingEnabled = true;
-            this.lstLowConfidence.Location = new System.Drawing.Point(552, 495);
+            this.lstLowConfidence.ItemHeight = 16;
+            this.lstLowConfidence.Location = new System.Drawing.Point(736, 609);
+            this.lstLowConfidence.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lstLowConfidence.Name = "lstLowConfidence";
-            this.lstLowConfidence.Size = new System.Drawing.Size(100, 134);
+            this.lstLowConfidence.Size = new System.Drawing.Size(132, 164);
             this.lstLowConfidence.TabIndex = 33;
             this.lstLowConfidence.DoubleClick += new System.EventHandler(this.MatchImage_DoubleClick);
             // 
             // lstErrors
             // 
             this.lstErrors.FormattingEnabled = true;
-            this.lstErrors.Location = new System.Drawing.Point(652, 495);
+            this.lstErrors.ItemHeight = 16;
+            this.lstErrors.Location = new System.Drawing.Point(869, 609);
+            this.lstErrors.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lstErrors.Name = "lstErrors";
-            this.lstErrors.Size = new System.Drawing.Size(100, 134);
+            this.lstErrors.Size = new System.Drawing.Size(132, 164);
             this.lstErrors.TabIndex = 34;
             this.lstErrors.DoubleClick += new System.EventHandler(this.MatchImage_DoubleClick);
             // 
             // lbMatchList
             // 
             this.lbMatchList.FormattingEnabled = true;
-            this.lbMatchList.Location = new System.Drawing.Point(557, 70);
+            this.lbMatchList.ItemHeight = 16;
+            this.lbMatchList.Location = new System.Drawing.Point(743, 86);
+            this.lbMatchList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lbMatchList.Name = "lbMatchList";
-            this.lbMatchList.Size = new System.Drawing.Size(125, 134);
+            this.lbMatchList.Size = new System.Drawing.Size(165, 164);
             this.lbMatchList.TabIndex = 35;
             this.lbMatchList.DoubleClick += new System.EventHandler(this.MatchImage_DoubleClick);
             // 
             // nupConfidence
             // 
-            this.nupConfidence.Location = new System.Drawing.Point(453, 306);
+            this.nupConfidence.Location = new System.Drawing.Point(604, 377);
+            this.nupConfidence.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.nupConfidence.Name = "nupConfidence";
-            this.nupConfidence.Size = new System.Drawing.Size(80, 20);
+            this.nupConfidence.Size = new System.Drawing.Size(105, 22);
             this.nupConfidence.TabIndex = 36;
             this.nupConfidence.Value = new decimal(new int[] {
-            35,
+            7,
             0,
             0,
             0});
@@ -396,63 +432,71 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(342, 306);
+            this.label9.Location = new System.Drawing.Point(456, 377);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(111, 13);
+            this.label9.Size = new System.Drawing.Size(147, 17);
             this.label9.TabIndex = 37;
             this.label9.Text = "Confidence Threshold";
             // 
             // lstLexicon
             // 
             this.lstLexicon.FormattingEnabled = true;
-            this.lstLexicon.Location = new System.Drawing.Point(113, 495);
+            this.lstLexicon.ItemHeight = 16;
+            this.lstLexicon.Location = new System.Drawing.Point(151, 609);
+            this.lstLexicon.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lstLexicon.Name = "lstLexicon";
-            this.lstLexicon.Size = new System.Drawing.Size(100, 134);
+            this.lstLexicon.Size = new System.Drawing.Size(132, 164);
             this.lstLexicon.TabIndex = 38;
             this.lstLexicon.DoubleClick += new System.EventHandler(this.MatchImage_DoubleClick);
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(110, 481);
+            this.label10.Location = new System.Drawing.Point(147, 592);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(62, 13);
+            this.label10.Size = new System.Drawing.Size(79, 17);
             this.label10.TabIndex = 39;
             this.label10.Text = "with lexicon";
             // 
             // lblLexiconCount
             // 
             this.lblLexiconCount.AutoSize = true;
-            this.lblLexiconCount.Location = new System.Drawing.Point(110, 634);
+            this.lblLexiconCount.Location = new System.Drawing.Point(147, 780);
+            this.lblLexiconCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblLexiconCount.Name = "lblLexiconCount";
-            this.lblLexiconCount.Size = new System.Drawing.Size(13, 13);
+            this.lblLexiconCount.Size = new System.Drawing.Size(16, 17);
             this.lblLexiconCount.TabIndex = 40;
             this.lblLexiconCount.Text = "0";
             // 
             // lblNrWords
             // 
             this.lblNrWords.AutoSize = true;
-            this.lblNrWords.Location = new System.Drawing.Point(671, 219);
+            this.lblNrWords.Location = new System.Drawing.Point(895, 270);
+            this.lblNrWords.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNrWords.Name = "lblNrWords";
-            this.lblNrWords.Size = new System.Drawing.Size(13, 13);
+            this.lblNrWords.Size = new System.Drawing.Size(16, 17);
             this.lblNrWords.TabIndex = 41;
             this.lblNrWords.Text = "0";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(555, 206);
+            this.label11.Location = new System.Drawing.Point(740, 254);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(82, 13);
+            this.label11.Size = new System.Drawing.Size(107, 17);
             this.label11.TabIndex = 42;
             this.label11.Text = "# Licenseplates";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(555, 219);
+            this.label12.Location = new System.Drawing.Point(740, 270);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(51, 13);
+            this.label12.Size = new System.Drawing.Size(65, 17);
             this.label12.TabIndex = 43;
             this.label12.Text = "# Unique";
             // 
@@ -460,9 +504,10 @@
             // 
             this.chkUseLexicon.AutoSize = true;
             this.chkUseLexicon.Enabled = false;
-            this.chkUseLexicon.Location = new System.Drawing.Point(453, 332);
+            this.chkUseLexicon.Location = new System.Drawing.Point(604, 409);
+            this.chkUseLexicon.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chkUseLexicon.Name = "chkUseLexicon";
-            this.chkUseLexicon.Size = new System.Drawing.Size(85, 17);
+            this.chkUseLexicon.Size = new System.Drawing.Size(107, 21);
             this.chkUseLexicon.TabIndex = 44;
             this.chkUseLexicon.Text = "Use Lexicon";
             this.chkUseLexicon.UseVisualStyleBackColor = true;
@@ -470,9 +515,10 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(13, 688);
+            this.label13.Location = new System.Drawing.Point(17, 847);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(52, 13);
+            this.label13.Size = new System.Drawing.Size(71, 17);
             this.label13.TabIndex = 45;
             this.label13.Text = "Last Error";
             // 
@@ -480,9 +526,10 @@
             // 
             this.lblResult.AutoSize = true;
             this.lblResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblResult.Location = new System.Drawing.Point(102, 390);
+            this.lblResult.Location = new System.Drawing.Point(136, 480);
+            this.lblResult.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblResult.Name = "lblResult";
-            this.lblResult.Size = new System.Drawing.Size(96, 25);
+            this.lblResult.Size = new System.Drawing.Size(122, 31);
             this.lblResult.TabIndex = 46;
             this.lblResult.Text = "XXXXXX";
             // 
@@ -490,9 +537,10 @@
             // 
             this.lblResultCapt.AutoSize = true;
             this.lblResultCapt.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblResultCapt.Location = new System.Drawing.Point(6, 390);
+            this.lblResultCapt.Location = new System.Drawing.Point(8, 480);
+            this.lblResultCapt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblResultCapt.Name = "lblResultCapt";
-            this.lblResultCapt.Size = new System.Drawing.Size(73, 25);
+            this.lblResultCapt.Size = new System.Drawing.Size(92, 31);
             this.lblResultCapt.TabIndex = 47;
             this.lblResultCapt.Text = "Result";
             // 
@@ -500,9 +548,10 @@
             // 
             this.lblLexiconCapt.AutoSize = true;
             this.lblLexiconCapt.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLexiconCapt.Location = new System.Drawing.Point(6, 415);
+            this.lblLexiconCapt.Location = new System.Drawing.Point(8, 511);
+            this.lblLexiconCapt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblLexiconCapt.Name = "lblLexiconCapt";
-            this.lblLexiconCapt.Size = new System.Drawing.Size(87, 25);
+            this.lblLexiconCapt.Size = new System.Drawing.Size(107, 31);
             this.lblLexiconCapt.TabIndex = 48;
             this.lblLexiconCapt.Text = "Lexicon";
             // 
@@ -510,9 +559,10 @@
             // 
             this.lblError1.AutoSize = true;
             this.lblError1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblError1.Location = new System.Drawing.Point(300, 390);
+            this.lblError1.Location = new System.Drawing.Point(400, 480);
+            this.lblError1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblError1.Name = "lblError1";
-            this.lblError1.Size = new System.Drawing.Size(24, 25);
+            this.lblError1.Size = new System.Drawing.Size(29, 31);
             this.lblError1.TabIndex = 50;
             this.lblError1.Text = "0";
             // 
@@ -520,9 +570,10 @@
             // 
             this.lblError2.AutoSize = true;
             this.lblError2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblError2.Location = new System.Drawing.Point(355, 390);
+            this.lblError2.Location = new System.Drawing.Point(473, 480);
+            this.lblError2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblError2.Name = "lblError2";
-            this.lblError2.Size = new System.Drawing.Size(24, 25);
+            this.lblError2.Size = new System.Drawing.Size(29, 31);
             this.lblError2.TabIndex = 52;
             this.lblError2.Text = "0";
             // 
@@ -530,9 +581,10 @@
             // 
             this.lblError3.AutoSize = true;
             this.lblError3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblError3.Location = new System.Drawing.Point(410, 390);
+            this.lblError3.Location = new System.Drawing.Point(547, 480);
+            this.lblError3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblError3.Name = "lblError3";
-            this.lblError3.Size = new System.Drawing.Size(24, 25);
+            this.lblError3.Size = new System.Drawing.Size(29, 31);
             this.lblError3.TabIndex = 54;
             this.lblError3.Text = "0";
             // 
@@ -540,9 +592,10 @@
             // 
             this.lblError4.AutoSize = true;
             this.lblError4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblError4.Location = new System.Drawing.Point(465, 390);
+            this.lblError4.Location = new System.Drawing.Point(620, 480);
+            this.lblError4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblError4.Name = "lblError4";
-            this.lblError4.Size = new System.Drawing.Size(24, 25);
+            this.lblError4.Size = new System.Drawing.Size(29, 31);
             this.lblError4.TabIndex = 56;
             this.lblError4.Text = "0";
             // 
@@ -550,9 +603,10 @@
             // 
             this.lblError5.AutoSize = true;
             this.lblError5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblError5.Location = new System.Drawing.Point(520, 390);
+            this.lblError5.Location = new System.Drawing.Point(693, 480);
+            this.lblError5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblError5.Name = "lblError5";
-            this.lblError5.Size = new System.Drawing.Size(24, 25);
+            this.lblError5.Size = new System.Drawing.Size(29, 31);
             this.lblError5.TabIndex = 58;
             this.lblError5.Text = "0";
             // 
@@ -560,9 +614,10 @@
             // 
             this.lblConfidence.AutoSize = true;
             this.lblConfidence.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConfidence.Location = new System.Drawing.Point(204, 390);
+            this.lblConfidence.Location = new System.Drawing.Point(272, 480);
+            this.lblConfidence.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblConfidence.Name = "lblConfidence";
-            this.lblConfidence.Size = new System.Drawing.Size(24, 25);
+            this.lblConfidence.Size = new System.Drawing.Size(29, 31);
             this.lblConfidence.TabIndex = 59;
             this.lblConfidence.Text = "0";
             // 
@@ -570,72 +625,80 @@
             // 
             this.lblLexiconConfidence.AutoSize = true;
             this.lblLexiconConfidence.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLexiconConfidence.Location = new System.Drawing.Point(204, 415);
+            this.lblLexiconConfidence.Location = new System.Drawing.Point(272, 511);
+            this.lblLexiconConfidence.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblLexiconConfidence.Name = "lblLexiconConfidence";
-            this.lblLexiconConfidence.Size = new System.Drawing.Size(24, 25);
+            this.lblLexiconConfidence.Size = new System.Drawing.Size(29, 31);
             this.lblLexiconConfidence.TabIndex = 60;
             this.lblLexiconConfidence.Text = "0";
             // 
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(206, 377);
+            this.label22.Location = new System.Drawing.Point(275, 464);
+            this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(61, 13);
+            this.label22.Size = new System.Drawing.Size(79, 17);
             this.label22.TabIndex = 61;
             this.label22.Text = "Confidence";
             // 
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(298, 377);
+            this.label24.Location = new System.Drawing.Point(397, 464);
+            this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(38, 13);
+            this.label24.Size = new System.Drawing.Size(52, 17);
             this.label24.TabIndex = 62;
             this.label24.Text = "Error 1";
             // 
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(353, 377);
+            this.label26.Location = new System.Drawing.Point(471, 464);
+            this.label26.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(38, 13);
+            this.label26.Size = new System.Drawing.Size(52, 17);
             this.label26.TabIndex = 63;
             this.label26.Text = "Error 2";
             // 
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(408, 377);
+            this.label27.Location = new System.Drawing.Point(544, 464);
+            this.label27.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(38, 13);
+            this.label27.Size = new System.Drawing.Size(52, 17);
             this.label27.TabIndex = 64;
             this.label27.Text = "Error 3";
             // 
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(463, 377);
+            this.label28.Location = new System.Drawing.Point(617, 464);
+            this.label28.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(38, 13);
+            this.label28.Size = new System.Drawing.Size(52, 17);
             this.label28.TabIndex = 65;
             this.label28.Text = "Error 4";
             // 
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(518, 377);
+            this.label29.Location = new System.Drawing.Point(691, 464);
+            this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(38, 13);
+            this.label29.Size = new System.Drawing.Size(52, 17);
             this.label29.TabIndex = 66;
             this.label29.Text = "Error 5";
             // 
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(573, 377);
+            this.label30.Location = new System.Drawing.Point(764, 464);
+            this.label30.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(38, 13);
+            this.label30.Size = new System.Drawing.Size(52, 17);
             this.label30.TabIndex = 68;
             this.label30.Text = "Error 6";
             // 
@@ -643,9 +706,10 @@
             // 
             this.lblError6.AutoSize = true;
             this.lblError6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblError6.Location = new System.Drawing.Point(575, 390);
+            this.lblError6.Location = new System.Drawing.Point(767, 480);
+            this.lblError6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblError6.Name = "lblError6";
-            this.lblError6.Size = new System.Drawing.Size(24, 25);
+            this.lblError6.Size = new System.Drawing.Size(29, 31);
             this.lblError6.TabIndex = 67;
             this.lblError6.Text = "0";
             // 
@@ -653,9 +717,10 @@
             // 
             this.lblExpectedCaption.AutoSize = true;
             this.lblExpectedCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblExpectedCaption.Location = new System.Drawing.Point(6, 441);
+            this.lblExpectedCaption.Location = new System.Drawing.Point(8, 543);
+            this.lblExpectedCaption.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblExpectedCaption.Name = "lblExpectedCaption";
-            this.lblExpectedCaption.Size = new System.Drawing.Size(102, 25);
+            this.lblExpectedCaption.Size = new System.Drawing.Size(127, 31);
             this.lblExpectedCaption.TabIndex = 69;
             this.lblExpectedCaption.Text = "Expected";
             // 
@@ -663,71 +728,80 @@
             // 
             this.lblExpected.AutoSize = true;
             this.lblExpected.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblExpected.Location = new System.Drawing.Point(102, 441);
+            this.lblExpected.Location = new System.Drawing.Point(136, 543);
+            this.lblExpected.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblExpected.Name = "lblExpected";
-            this.lblExpected.Size = new System.Drawing.Size(96, 25);
+            this.lblExpected.Size = new System.Drawing.Size(122, 31);
             this.lblExpected.TabIndex = 70;
             this.lblExpected.Text = "XXXXXX";
             // 
             // lstRectifyPlateErr
             // 
             this.lstRectifyPlateErr.FormattingEnabled = true;
-            this.lstRectifyPlateErr.Location = new System.Drawing.Point(331, 495);
+            this.lstRectifyPlateErr.ItemHeight = 16;
+            this.lstRectifyPlateErr.Location = new System.Drawing.Point(441, 609);
+            this.lstRectifyPlateErr.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lstRectifyPlateErr.Name = "lstRectifyPlateErr";
-            this.lstRectifyPlateErr.Size = new System.Drawing.Size(100, 134);
+            this.lstRectifyPlateErr.Size = new System.Drawing.Size(132, 164);
             this.lstRectifyPlateErr.TabIndex = 71;
             this.lstRectifyPlateErr.DoubleClick += new System.EventHandler(this.MatchImage_DoubleClick);
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(328, 467);
+            this.label14.Location = new System.Drawing.Point(437, 575);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(90, 13);
+            this.label14.Size = new System.Drawing.Size(122, 17);
             this.label14.TabIndex = 72;
             this.label14.Text = "FindCharacters ( )";
             // 
             // lblRectfyPlateErrCount
             // 
             this.lblRectfyPlateErrCount.AutoSize = true;
-            this.lblRectfyPlateErrCount.Location = new System.Drawing.Point(328, 634);
+            this.lblRectfyPlateErrCount.Location = new System.Drawing.Point(437, 780);
+            this.lblRectfyPlateErrCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRectfyPlateErrCount.Name = "lblRectfyPlateErrCount";
-            this.lblRectfyPlateErrCount.Size = new System.Drawing.Size(13, 13);
+            this.lblRectfyPlateErrCount.Size = new System.Drawing.Size(16, 17);
             this.lblRectfyPlateErrCount.TabIndex = 73;
             this.lblRectfyPlateErrCount.Text = "0";
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(228, 480);
+            this.label15.Location = new System.Drawing.Point(304, 591);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(69, 13);
+            this.label15.Size = new System.Drawing.Size(92, 17);
             this.label15.TabIndex = 74;
             this.label15.Text = "Returns false";
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(328, 480);
+            this.label16.Location = new System.Drawing.Point(437, 591);
+            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(69, 13);
+            this.label16.Size = new System.Drawing.Size(92, 17);
             this.label16.TabIndex = 75;
             this.label16.Text = "Returns false";
             // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(429, 480);
+            this.label17.Location = new System.Drawing.Point(572, 591);
+            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(69, 13);
+            this.label17.Size = new System.Drawing.Size(92, 17);
             this.label17.TabIndex = 76;
             this.label17.Text = "Returns false";
             // 
             // btnExportMatched
             // 
-            this.btnExportMatched.Location = new System.Drawing.Point(16, 648);
+            this.btnExportMatched.Location = new System.Drawing.Point(21, 798);
+            this.btnExportMatched.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnExportMatched.Name = "btnExportMatched";
-            this.btnExportMatched.Size = new System.Drawing.Size(75, 23);
+            this.btnExportMatched.Size = new System.Drawing.Size(100, 28);
             this.btnExportMatched.TabIndex = 77;
             this.btnExportMatched.Text = "Export files";
             this.btnExportMatched.UseVisualStyleBackColor = true;
@@ -735,9 +809,10 @@
             // 
             // btnExportMatchedLexicon
             // 
-            this.btnExportMatchedLexicon.Location = new System.Drawing.Point(113, 648);
+            this.btnExportMatchedLexicon.Location = new System.Drawing.Point(151, 798);
+            this.btnExportMatchedLexicon.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnExportMatchedLexicon.Name = "btnExportMatchedLexicon";
-            this.btnExportMatchedLexicon.Size = new System.Drawing.Size(75, 23);
+            this.btnExportMatchedLexicon.Size = new System.Drawing.Size(100, 28);
             this.btnExportMatchedLexicon.TabIndex = 78;
             this.btnExportMatchedLexicon.Text = "Export files";
             this.btnExportMatchedLexicon.UseVisualStyleBackColor = true;
@@ -745,9 +820,10 @@
             // 
             // btnExportFindPlate
             // 
-            this.btnExportFindPlate.Location = new System.Drawing.Point(231, 648);
+            this.btnExportFindPlate.Location = new System.Drawing.Point(308, 798);
+            this.btnExportFindPlate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnExportFindPlate.Name = "btnExportFindPlate";
-            this.btnExportFindPlate.Size = new System.Drawing.Size(75, 23);
+            this.btnExportFindPlate.Size = new System.Drawing.Size(100, 28);
             this.btnExportFindPlate.TabIndex = 79;
             this.btnExportFindPlate.Text = "Export files";
             this.btnExportFindPlate.UseVisualStyleBackColor = true;
@@ -755,9 +831,10 @@
             // 
             // bntExportFindCharacters
             // 
-            this.bntExportFindCharacters.Location = new System.Drawing.Point(331, 648);
+            this.bntExportFindCharacters.Location = new System.Drawing.Point(441, 798);
+            this.bntExportFindCharacters.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.bntExportFindCharacters.Name = "bntExportFindCharacters";
-            this.bntExportFindCharacters.Size = new System.Drawing.Size(75, 23);
+            this.bntExportFindCharacters.Size = new System.Drawing.Size(100, 28);
             this.bntExportFindCharacters.TabIndex = 80;
             this.bntExportFindCharacters.Text = "Export files";
             this.bntExportFindCharacters.UseVisualStyleBackColor = true;
@@ -765,9 +842,10 @@
             // 
             // btnExportMatchPlate
             // 
-            this.btnExportMatchPlate.Location = new System.Drawing.Point(432, 648);
+            this.btnExportMatchPlate.Location = new System.Drawing.Point(576, 798);
+            this.btnExportMatchPlate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnExportMatchPlate.Name = "btnExportMatchPlate";
-            this.btnExportMatchPlate.Size = new System.Drawing.Size(75, 23);
+            this.btnExportMatchPlate.Size = new System.Drawing.Size(100, 28);
             this.btnExportMatchPlate.TabIndex = 81;
             this.btnExportMatchPlate.Text = "Export files";
             this.btnExportMatchPlate.UseVisualStyleBackColor = true;
@@ -775,9 +853,10 @@
             // 
             // btnExportLowConfidence
             // 
-            this.btnExportLowConfidence.Location = new System.Drawing.Point(552, 648);
+            this.btnExportLowConfidence.Location = new System.Drawing.Point(736, 798);
+            this.btnExportLowConfidence.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnExportLowConfidence.Name = "btnExportLowConfidence";
-            this.btnExportLowConfidence.Size = new System.Drawing.Size(75, 23);
+            this.btnExportLowConfidence.Size = new System.Drawing.Size(100, 28);
             this.btnExportLowConfidence.TabIndex = 82;
             this.btnExportLowConfidence.Text = "Export files";
             this.btnExportLowConfidence.UseVisualStyleBackColor = true;
@@ -785,9 +864,10 @@
             // 
             // btnExportErrors
             // 
-            this.btnExportErrors.Location = new System.Drawing.Point(652, 648);
+            this.btnExportErrors.Location = new System.Drawing.Point(869, 798);
+            this.btnExportErrors.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnExportErrors.Name = "btnExportErrors";
-            this.btnExportErrors.Size = new System.Drawing.Size(75, 23);
+            this.btnExportErrors.Size = new System.Drawing.Size(100, 28);
             this.btnExportErrors.TabIndex = 83;
             this.btnExportErrors.Text = "Export files";
             this.btnExportErrors.UseVisualStyleBackColor = true;
@@ -795,18 +875,20 @@
             // 
             // lblFolder
             // 
-            this.lblFolder.Location = new System.Drawing.Point(595, 41);
+            this.lblFolder.Location = new System.Drawing.Point(793, 50);
+            this.lblFolder.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFolder.Name = "lblFolder";
-            this.lblFolder.Size = new System.Drawing.Size(157, 26);
+            this.lblFolder.Size = new System.Drawing.Size(209, 32);
             this.lblFolder.TabIndex = 84;
             this.lblFolder.Text = "<none>";
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(555, 41);
+            this.label18.Location = new System.Drawing.Point(740, 50);
+            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(39, 13);
+            this.label18.Size = new System.Drawing.Size(52, 17);
             this.label18.TabIndex = 85;
             this.label18.Text = "Folder:";
             // 
@@ -815,9 +897,10 @@
             this.chkUseScripts.AutoSize = true;
             this.chkUseScripts.Checked = true;
             this.chkUseScripts.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkUseScripts.Location = new System.Drawing.Point(558, 332);
+            this.chkUseScripts.Location = new System.Drawing.Point(744, 409);
+            this.chkUseScripts.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chkUseScripts.Name = "chkUseScripts";
-            this.chkUseScripts.Size = new System.Drawing.Size(80, 17);
+            this.chkUseScripts.Size = new System.Drawing.Size(102, 21);
             this.chkUseScripts.TabIndex = 86;
             this.chkUseScripts.Text = "Use Scripts";
             this.chkUseScripts.UseVisualStyleBackColor = true;
@@ -825,9 +908,9 @@
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(758, 719);
+            this.ClientSize = new System.Drawing.Size(1011, 885);
             this.Controls.Add(this.chkUseScripts);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.lblFolder);
@@ -903,6 +986,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.imgOrig);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Plate Matcher";
